@@ -1,0 +1,9 @@
+.search-bar-container {
+  margin: 2px 3px 5px;
+}
+
+input {
+  height: 20px;
+  min-width: 200px;
+  border-radius: 3px;
+}

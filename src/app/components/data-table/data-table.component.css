@@ -1,0 +1,38 @@
+.data-table-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.sort-handler {
+  cursor: pointer;
+  float: right;
+}
+
+table {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #1976d2;
+}
+
+th {
+  color: white;
+  background-color: #1976d2;
+  user-select: none;
+}
+
+th, td {
+  text-align: start;
+  min-width: 100px;
+  padding: 5px 12px 3px;
+}
+
+tr {
+  min-height: 50px;
+}
+
+tbody tr:nth-child(even) {
+  background-color: skyblue;
+}

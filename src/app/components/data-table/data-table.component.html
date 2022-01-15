@@ -1,0 +1,40 @@
+<div class="data-table-container">
+  <div class="toolbar">
+    <app-search-bar #searchBar [data]="data" (filterApplied)="onFilterApplied($event)"></app-search-bar>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th *ngFor="let header of headers">
+          {{ header.label | customTextDisplay: 'firstCharEachWord' }}
+          <span class="sort-handler" (click)="setSort(header.key)">
+            <span *ngIf="!sort.descending"
+              [ngStyle]="{ color: header.key === sort.column ? 'orange' : 'white' }">
+              &#10169;
+            </span>
+            <span *ngIf="sort.descending"
+              [ngStyle]="{ color: header.key === sort.column ? 'orange' : 'white' }">
+              &#10167;
+            </span>
+          </span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of displayedData">
+        <td *ngFor="let header of headers" [ngSwitch]="ObjectHelpers.getType(data, header.key)">
+          <span *ngSwitchCase="'string'">
+            {{ ObjectHelpers.getValue(data, header.key) + '' | customTextDisplay: 'firstCharOnly' }}
+          </span>
+          <span *ngSwitchCase="'boolean'">
+            <span *ngIf="ObjectHelpers.getValue(data, header.key)" style="color: green;">&#10004;</span>
+            <span *ngIf="!ObjectHelpers.getValue(data, header.key)" style="color: red;">&#10006;</span>
+          </span>
+          <span *ngSwitchDefault>
+            {{ ObjectHelpers.getValue(data, header.key) }}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
